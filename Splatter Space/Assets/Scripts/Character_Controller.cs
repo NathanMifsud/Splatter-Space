@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using XboxCtrlrInput;
 
 public class Character_Controller : MonoBehaviour {
 
@@ -8,36 +9,84 @@ public class Character_Controller : MonoBehaviour {
 	public GameObject bulletSpawnPoint1;
 	public GameObject bulletSpawnPoint2;
 
+	public XboxController controller;
+
+	public float constantThrust = 50f;
+
+	public float boosterThrust = 200f;
+
+
+	public float inputLeftStickY;
+	public float inputLeftStickX;
+
+	public float inputRightStickY;
+	public float inputRightStickX;
+
+
+	public float pitchSpeed = 5f;
+	public float rollSpeed = 5f;
+	public float yawSpeed = 5f;
+
+
+
+
+
+
+
 	// Update is called once per frame
 	void Update () {
+
+		inputLeftStickY = (XCI.GetAxis (XboxAxis.LeftStickY, controller));
+		inputLeftStickX = (XCI.GetAxis (XboxAxis.LeftStickX, controller));
+		inputRightStickX = (XCI.GetAxis (XboxAxis.RightStickX, controller));
+
+		MovePlayer ();
+
+	}
+		private void MovePlayer(){
 		
-		if (Input.GetKey (KeyCode.W))  {
-			transform.position = transform.position + (transform.forward * 1f);
+
+		transform.position += transform.forward * constantThrust * Time.deltaTime;
+
+		if (XCI.GetAxis (XboxAxis.RightTrigger) !=0) { 
+
+			transform.position += transform.forward * boosterThrust * Time.deltaTime;
 		}
-		if (Input.GetKey (KeyCode.LeftArrow))  {
-			transform.Rotate 	(new Vector3 (0, -1, 0));
+
+		if (inputLeftStickY < 0) {
+			transform.Rotate ((inputLeftStickY) * pitchSpeed, 0, 0);
 		}
-		if (Input.GetKey (KeyCode.RightArrow))  {
-			transform.Rotate 	(new Vector3 (0, 1, 0));
+
+		if (inputLeftStickY > 0) {
+			transform.Rotate ((inputLeftStickY) * pitchSpeed, 0, 0);
 		}
-		if (Input.GetKey (KeyCode.A))  {
-			transform.Rotate 	(new Vector3 (0, 0, 2));
+
+		if (inputLeftStickX < 0) {
+			transform.Rotate ((inputLeftStickX) * 0, 0, rollSpeed);
 		}
-		if (Input.GetKey (KeyCode.D))  {
-			transform.Rotate 	(new Vector3 (0, 0, -2));
+
+		if (inputLeftStickX > 0) {
+					transform.Rotate ((inputLeftStickX) * 0, 0, -rollSpeed);
 		}
-		if (Input.GetKey (KeyCode.DownArrow))  {
-			transform.Rotate 	(new Vector3 (-0.9f, 0, 0));
+
+		if (inputRightStickX < 0) {
+			transform.Rotate ((inputRightStickX) * 0, -yawSpeed, 0);
 		}
-		if (Input.GetKey (KeyCode.UpArrow))  {
-			transform.Rotate 	(new Vector3 (0.9f, 0, 0));
+
+		if (inputRightStickX > 0) {
+			transform.Rotate ((inputRightStickX) * 0, yawSpeed, 0);
 		}
-		if (Input.GetKey (KeyCode.Space)) {
+
+
+
+
+
+		if (XCI.GetAxis (XboxAxis.LeftTrigger) !=0) {
 			GameObject Go = Instantiate (bullet, bulletSpawnPoint1.transform.position, transform.rotation) as GameObject;
 			Go.GetComponent<Rigidbody> ().AddForce (transform.forward * 100, ForceMode.Impulse);
 
 		}
-		if (Input.GetKey (KeyCode.Space)) {
+		if (XCI.GetAxis (XboxAxis.LeftTrigger) !=0) {
 			GameObject Go = Instantiate (bullet, bulletSpawnPoint2.transform.position, transform.rotation) as GameObject;
 			Go.GetComponent<Rigidbody> ().AddForce (transform.forward * 100, ForceMode.Impulse);
 
