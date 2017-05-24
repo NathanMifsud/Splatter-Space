@@ -61,19 +61,19 @@ public class Character_Controller : MonoBehaviour {
 			transform.Rotate ((inputLeftStickY) * pitchSpeed, 0, 0);
 		}
 
-		if (inputLeftStickX < 0) {
+		if (inputRightStickX < 0) {
 			transform.Rotate ((inputLeftStickX) * 0, 0, rollSpeed);
 		}
 
-		if (inputLeftStickX > 0) {
+		if (inputRightStickX > 0) {
 					transform.Rotate ((inputLeftStickX) * 0, 0, -rollSpeed);
 		}
 
-		if (inputRightStickX < 0) {
+		if (inputLeftStickX < 0) {
 			transform.Rotate ((inputRightStickX) * 0, -yawSpeed, 0);
 		}
 
-		if (inputRightStickX > 0) {
+		if (inputLeftStickX > 0) {
 			transform.Rotate ((inputRightStickX) * 0, yawSpeed, 0);
 		}
 
