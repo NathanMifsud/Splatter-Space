@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class FollowCamera : MonoBehaviour {
+public class Follow_Camera : MonoBehaviour {
 	public Transform target;
 	public float distance = 16.0f;
 	public float height = 6.0f;

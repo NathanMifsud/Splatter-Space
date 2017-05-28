@@ -5,9 +5,13 @@ using XboxCtrlrInput;
 
 public class Character_Controller : MonoBehaviour {
 
+
 	public GameObject bullet;
 	public GameObject bulletSpawnPoint1;
 	public GameObject bulletSpawnPoint2;
+	public float timeBetweenShots = .4f;
+	public bool canShoot = true;
+
 
 	public XboxController controller;
 
@@ -28,11 +32,6 @@ public class Character_Controller : MonoBehaviour {
 	public float yawSpeed = 5f;
 
 
-
-
-
-
-
 	// Update is called once per frame
 	void Update () {
 
@@ -41,14 +40,20 @@ public class Character_Controller : MonoBehaviour {
 		inputRightStickX = (XCI.GetAxis (XboxAxis.RightStickX, controller));
 
 		MovePlayer ();
+		PlayerShoot ();
+
+
 
 	}
-		private void MovePlayer(){
+		
+
+
+	private void MovePlayer(){
 		
 
 		transform.position += transform.forward * constantThrust * Time.deltaTime;
 
-		if (XCI.GetAxis (XboxAxis.RightTrigger) !=0) { 
+		if (XCI.GetAxis (XboxAxis.LeftTrigger, controller) !=0) { 
 
 			transform.position += transform.forward * boosterThrust * Time.deltaTime;
 		}
@@ -81,15 +86,42 @@ public class Character_Controller : MonoBehaviour {
 
 
 
-		if (XCI.GetAxis (XboxAxis.LeftTrigger) !=0) {
-			GameObject Go = Instantiate (bullet, bulletSpawnPoint1.transform.position, transform.rotation) as GameObject;
-			Go.GetComponent<Rigidbody> ().AddForce (transform.forward * 100, ForceMode.Impulse);
 
-		}
-		if (XCI.GetAxis (XboxAxis.LeftTrigger) !=0) {
-			GameObject Go = Instantiate (bullet, bulletSpawnPoint2.transform.position, transform.rotation) as GameObject;
-			Go.GetComponent<Rigidbody> ().AddForce (transform.forward * 100, ForceMode.Impulse);
-
-		}
 	}
-}
+
+	private void PlayerShoot(){
+
+
+
+
+		if (XCI.GetAxis (XboxAxis.RightTrigger, controller) != 0) {
+			
+				if (canShoot == true) {
+					GameObject Go = Instantiate (bullet, bulletSpawnPoint1.transform.position, transform.rotation) as GameObject;
+					Go.GetComponent<Rigidbody> ().AddForce (transform.forward * 100, ForceMode.Impulse);
+					GameObject Go2 = Instantiate (bullet, bulletSpawnPoint2.transform.position, transform.rotation) as GameObject;
+					Go2.GetComponent<Rigidbody> ().AddForce (transform.forward * 100, ForceMode.Impulse);
+					canShoot = false;
+					Invoke ("ResetShootBool", timeBetweenShots);
+				}
+			}
+//			if (XCI.GetAxis (XboxAxis.RightTrigger, controller) != 0) {
+//				if (canShoot == true) {
+//				GameObject Go = Instantiate (bullet, bulletSpawnPoint2.transform.position, transform.rotation) as GameObject;
+//				Go.GetComponent<Rigidbody> ().AddForce (transform.forward * 100, ForceMode.Impulse);
+//					canShoot = false;
+//					Invoke ("ResetShootBool", timeBetweenShots);
+//			}
+//		}
+	}
+
+
+		private void ResetShootBool(){
+			canShoot = true;
+		}
+
+
+	}
+
+
+
