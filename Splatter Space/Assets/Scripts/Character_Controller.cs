@@ -15,7 +15,8 @@ public class Character_Controller : MonoBehaviour {
 	//Bombs
 	public GameObject bomb;
 	public GameObject bombSpawn;
-	public bool canBomb = true
+	public float timeBetweenBombs;
+	public bool canBomb = true;
 
 	//Controls
 	public XboxController controller;
@@ -105,14 +106,18 @@ public class Character_Controller : MonoBehaviour {
 					Invoke ("ResetShootBool", timeBetweenShots);
 				}
 			}
-//			if (XCI.GetAxis (XboxAxis.RightTrigger, controller) != 0) {
-//				if (canShoot == true) {
-//				GameObject Go = Instantiate (bullet, bulletSpawnPoint2.transform.position, transform.rotation) as GameObject;
-//				Go.GetComponent<Rigidbody> ().AddForce (transform.forward * 100, ForceMode.Impulse);
-//					canShoot = false;
-//					Invoke ("ResetShootBool", timeBetweenShots);
-//			}
-//		}
+
+
+		if (XCI.GetButtonDown (XboxButton.RightBumper, controller)) {
+
+			if (canBomb == true) {
+				GameObject Go3 = Instantiate (bomb, bombSpawn.transform.position, transform.rotation) as GameObject;
+				Go3.GetComponent<Rigidbody> ().AddForce (transform.forward * 50, ForceMode.Impulse);
+				canBomb = false;
+				Invoke ("ResetBombBool", timeBetweenBombs);
+			}
+		}
+
 	}
 
 
