@@ -18,7 +18,11 @@ public class Character_Controller : MonoBehaviour {
 	public float timeBetweenBombs;
 	public bool canBomb = true;
 
-	//Controls
+	//Rear Camera
+	public GameObject rearCamera;
+
+	//Controls and Movement
+	public GameObject ship;
 	public XboxController controller;
 
 	public float constantThrust = 50f;
@@ -49,6 +53,8 @@ public class Character_Controller : MonoBehaviour {
 
 	}
 
+
+	/// Moves the player
 	private void MovePlayer(){
 		
 
@@ -83,13 +89,24 @@ public class Character_Controller : MonoBehaviour {
 			transform.Rotate ((inputRightStickX) * 0, yawSpeed, 0);
 		}
 
+		if (XCI.GetButton(XboxButton.A, controller)) {
 
+			rearCamera.SetActive (true);
+
+		}
+		if (XCI.GetButtonUp(XboxButton.A, controller)) {
+
+			rearCamera.SetActive (false);
+
+		}
 
 
 
 
 	}
-
+	/// <summary>
+	/// Players
+	/// </summary>
 	private void PlayerShoot(){
 
 
@@ -131,8 +148,16 @@ public class Character_Controller : MonoBehaviour {
 		canBomb = true;
 	}
 
+	void OnTriggerEnter (Collider col) {
+
+
+		if (col.gameObject.tag == "Player") {
+
+
+			Destroy (this.ship);
+		}
 
 	}
 
 
-
+}
