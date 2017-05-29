@@ -5,14 +5,19 @@ using XboxCtrlrInput;
 
 public class Character_Controller : MonoBehaviour {
 
-
+	//Bullets
 	public GameObject bullet;
 	public GameObject bulletSpawnPoint1;
 	public GameObject bulletSpawnPoint2;
 	public float timeBetweenShots = .4f;
 	public bool canShoot = true;
 
+	//Bombs
+	public GameObject bomb;
+	public GameObject bombSpawn;
+	public bool canBomb = true
 
+	//Controls
 	public XboxController controller;
 
 	public float constantThrust = 50f;
@@ -25,7 +30,6 @@ public class Character_Controller : MonoBehaviour {
 
 	public float inputRightStickY;
 	public float inputRightStickX;
-
 
 	public float pitchSpeed = 5f;
 	public float rollSpeed = 5f;
@@ -42,11 +46,7 @@ public class Character_Controller : MonoBehaviour {
 		MovePlayer ();
 		PlayerShoot ();
 
-
-
 	}
-		
-
 
 	private void MovePlayer(){
 		
@@ -119,6 +119,12 @@ public class Character_Controller : MonoBehaviour {
 		private void ResetShootBool(){
 			canShoot = true;
 		}
+
+
+
+	private void ResetBombBool(){
+		canBomb = true;
+	}
 
 
 	}

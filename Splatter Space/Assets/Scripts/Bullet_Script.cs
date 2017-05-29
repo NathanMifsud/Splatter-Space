@@ -5,6 +5,7 @@ using UnityEngine;
 public class Bullet_Script : MonoBehaviour {
 
 	public float bulletDespawnTime = 4f; 
+	public Color playerColor;
 
 	// Use this for initialization
 	void Start(){
@@ -15,11 +16,13 @@ public class Bullet_Script : MonoBehaviour {
 	// Update is called once per frame
 	void OnTriggerEnter (Collider col) {
 
+
 		if (col.gameObject.tag == "Planet") {
-		Invoke ("Paint_Planet", 1);
+			
+			col.GetComponent<Paint_Planet> ().PaintPlanet (playerColor); 
 			Destroy (this.gameObject);
 		}
-
+		  
 
 	}
 }
