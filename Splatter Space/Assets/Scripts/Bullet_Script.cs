@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class Bullet_Script : MonoBehaviour {
 
+	//Despawn time for bullets
 	public float bulletDespawnTime = 4f; 
+	//Color of the bullets, used to change the color of the planets
 	public Color playerColor;
 
 	// Use this for initialization
@@ -13,7 +15,15 @@ public class Bullet_Script : MonoBehaviour {
 		Destroy (this.gameObject, bulletDespawnTime);
 	}
 	
-	// Update is called once per frame
+	//----------------------------------------------------------------------
+	//		OnTriggerEnter()
+	// Triggers the Painting script and deletes the projectile
+	// 
+	// Param:			
+	// 		Collider col - The collider of any objects that pass into this trigger	
+	// Return;
+	// 			Void
+	//----------------------------------------------------------------------
 	void OnTriggerEnter (Collider col) {
 
 

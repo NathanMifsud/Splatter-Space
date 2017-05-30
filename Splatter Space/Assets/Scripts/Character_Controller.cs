@@ -5,38 +5,49 @@ using XboxCtrlrInput;
 
 public class Character_Controller : MonoBehaviour {
 
-	//Bullets
+	//Game Object for the bullet
 	public GameObject bullet;
+	//Left Bullet Spawnpoint
 	public GameObject bulletSpawnPoint1;
+	//Right Bullet Spawnpoint
 	public GameObject bulletSpawnPoint2;
+	//DelayedAttribute between shots fired
 	public float timeBetweenShots = .4f;
+	//Boolean used to reactivate the timer for shots
 	public bool canShoot = true;
 
-	//Bombs
+	//Game Object for the Bomb
 	public GameObject bomb;
+	//Bomd Spawnpoint
 	public GameObject bombSpawn;
+	//Cooldown for bombs fired;
 	public float timeBetweenBombs;
+	//Boolean used to reactivate the timer before bombs
 	public bool canBomb = true;
 
-	//Rear Camera
+	//Game Object for the Rear Camera
 	public GameObject rearCamera;
 
-	//Controls and Movement
+	//Game Object for the ships
 	public GameObject ship;
+	//Xbox Controllers
 	public XboxController controller;
 
+	//Speed at which the ships move forward when no input
 	public float constantThrust = 50f;
 
+	//Speed at which the ship moves forward when boosted
 	public float boosterThrust = 200f;
 
-
+	//Controller inputs
 	public float inputLeftStickY;
 	public float inputLeftStickX;
 
 	public float inputRightStickY;
 	public float inputRightStickX;
 
-	public float pitchSpeed = 5f;
+	//Flying Controlls
+	public float pitchSpeed = 5f;   
 	public float rollSpeed = 5f;
 	public float yawSpeed = 5f;
 

@@ -5,17 +5,33 @@ using UnityEngine.UI;
 
 public class Paint_Planet : MonoBehaviour {
 
+	//Renderer to access 'Color' and rend'
 	Renderer rend;
 
+	//Counter for blue player's score
 	public int countBlue;
+	//Counter for red player's score
 	public int countRed;
+	//Color of the planets if red player shoots it
 	public Color blueColorScore;
+	//Color of the planets if red player shoots it
 	public Color redColorScore;
+	//Color of the planets at the start of the game
 	public Color currentColor;
+	//Text output for red's score
 	public Text redScore;
+	//Text output for blue's score
 	public Text blueScore;
 
-
+	//----------------------------------------------------------------------
+	//		Start()
+	// Runs on play
+	// 
+	// Param:			
+	// 			None
+	// Return;
+	// 			Void
+	//----------------------------------------------------------------------
 	void Start () {
 
 	
@@ -31,9 +47,10 @@ public class Paint_Planet : MonoBehaviour {
 	// 
 	// Param:			
 	// 			None
-	// Return;
-	// 			Void
+	// Return:
+	// 			
 	//----------------------------------------------------------------------
+
 
 	public void PaintPlanet(Color playerColor) {
 		if (rend.material.color == currentColor) {
