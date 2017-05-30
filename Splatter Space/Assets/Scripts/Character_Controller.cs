@@ -41,7 +41,15 @@ public class Character_Controller : MonoBehaviour {
 	public float yawSpeed = 5f;
 
 
-	// Update is called once per frame
+	//----------------------------------------------------------------------
+	//		Update()
+	// Runs every frame
+	// 
+	// Param:			
+	// 			None
+	// Return;
+	// 			Void
+	//----------------------------------------------------------------------
 	void Update () {
 
 		inputLeftStickY = (XCI.GetAxis (XboxAxis.LeftStickY, controller));
@@ -53,8 +61,15 @@ public class Character_Controller : MonoBehaviour {
 
 	}
 
-
-	/// Moves the player
+	//----------------------------------------------------------------------
+	//		MovePlayer()
+	// Moves the player
+	// 
+	// Param:			
+	// 			None
+	// Return;
+	// 			Void
+	//----------------------------------------------------------------------
 	private void MovePlayer(){
 		
 
@@ -104,9 +119,15 @@ public class Character_Controller : MonoBehaviour {
 
 
 	}
-	/// <summary>
-	/// Players
-	/// </summary>
+	//----------------------------------------------------------------------
+	//		PlayerShoot()
+	// Lets the player shoot normal bullet and bomb projectiles
+	// 
+	// Param:			
+	// 			None
+	// Return;
+	// 			Void
+	//----------------------------------------------------------------------
 	private void PlayerShoot(){
 
 
@@ -137,17 +158,44 @@ public class Character_Controller : MonoBehaviour {
 
 	}
 
-
+	//----------------------------------------------------------------------
+	//		ResetShootBool()
+	// Resets the boolean for the Shoot Timer
+	// 
+	// Param:			
+	// 			None
+	// Return;
+	// 			Void
+	//----------------------------------------------------------------------
 		private void ResetShootBool(){
 			canShoot = true;
 		}
 
 
-
+	//----------------------------------------------------------------------
+	//		ResetBombBool()
+	// Resets the boolean for the Bomb Timer
+	// 
+	// Param:			
+	// 			None
+	// Return;
+	// 			Void
+	//----------------------------------------------------------------------
 	private void ResetBombBool(){
 		canBomb = true;
 	}
 
+
+
+	//----------------------------------------------------------------------
+	//		ResetBombBool()
+	// Destroys the players if they collide with eachother and respawns them
+	// 
+	// Param:			
+	// 			Collider col - The collider of any objects that pass into this trigger
+	// Return;
+	// 			Void
+	//----------------------------------------------------------------------
 	void OnTriggerEnter (Collider col) {
 
 
