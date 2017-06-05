@@ -92,27 +92,27 @@ public class Character_Controller : MonoBehaviour {
 		}
 
 		if (inputLeftStickY < 0) {
-			transform.Rotate ((inputLeftStickY) * pitchSpeed, 0, 0);
+			transform.Rotate ((inputLeftStickY) * pitchSpeed * Time.deltaTime, 0, 0);
 		}
 
 		if (inputLeftStickY > 0) {
-			transform.Rotate ((inputLeftStickY) * pitchSpeed, 0, 0);
+			transform.Rotate ((inputLeftStickY) * pitchSpeed * Time.deltaTime, 0, 0);
 		}
 
 		if (inputRightStickX < 0) {
-			transform.Rotate ((inputLeftStickX) * 0, 0, rollSpeed);
+			transform.Rotate ((inputLeftStickX) * 0, 0, rollSpeed * Time.deltaTime);
 		}
 
 		if (inputRightStickX > 0) {
-					transform.Rotate ((inputLeftStickX) * 0, 0, -rollSpeed);
+			transform.Rotate ((inputLeftStickX) * 0, 0, -rollSpeed * Time.deltaTime);
 		}
 
 		if (inputLeftStickX < 0) {
-			transform.Rotate ((inputRightStickX) * 0, -yawSpeed, 0);
+			transform.Rotate ((inputRightStickX) * 0, -yawSpeed * Time.deltaTime, 0);
 		}
 
 		if (inputLeftStickX > 0) {
-			transform.Rotate ((inputRightStickX) * 0, yawSpeed, 0);
+			transform.Rotate ((inputRightStickX) * 0, yawSpeed * Time.deltaTime, 0);
 		}
 
 		if (XCI.GetButton(XboxButton.A, controller)) {
