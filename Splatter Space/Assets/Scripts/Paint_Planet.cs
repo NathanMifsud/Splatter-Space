@@ -20,6 +20,7 @@ public class Paint_Planet : MonoBehaviour {
 	public Color currentColor;
 
 
+
 	private GameController controller;
 
 
@@ -54,13 +55,14 @@ public class Paint_Planet : MonoBehaviour {
 
 
 	public void PaintPlanet(Color playerColor) {
+		//debugColor = rend.material.color;
 		if (rend.material.color == currentColor) {
 			rend.material.color = playerColor;
 			if (playerColor == Color.red) {
+				Debug.Log ("HERE RED");
 				isRed = true;
 				isBlue = false;
 				controller.AddScore (1, Color.red);
-	
 
 			}
 			if (playerColor == Color.blue) {
@@ -71,20 +73,24 @@ public class Paint_Planet : MonoBehaviour {
 
 			}
 		}else{//If the planet is not the same colour as the current colour
-			
+			Debug.Log("WE HERE MAYBE?");
 		}
 		
-		if (rend.material.color != playerColor) {
+		if (rend.material.color == Color.blue) {
 
 			rend.material.color = playerColor;
-				if (playerColor == Color.red) {
+			if (playerColor == Color.red) {
 				controller.AddScore (1, Color.red);
 				controller.RemoveScore (1, Color.blue);
 
 				isRed = true;
 				isBlue = false;
 
-				}
+			}
+		}
+
+		if (rend.material.color == Color.red) {
+			rend.material.color = playerColor;
 			if (playerColor == Color.blue) {
 				controller.AddScore (1, Color.blue);
 				controller.RemoveScore (1, Color.red);
