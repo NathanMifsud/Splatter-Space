@@ -100,24 +100,5 @@ public class Paint_Planet : MonoBehaviour {
 			}
 		}
 
-		if (rend.material.color != playerColor) { //If not same as player
-			if(rend.material.color == currentColor){ //is it the planet colour?
-				//Is green
-				//What colour is polayer shooting
-				//Add score to that player
-
-			}else{
-				//is other player
-				//remove score from other player
-				//addd score to this player
-			}
-		
-		}
-		//If planet is already red
-
-
-
-
-
 	}
 }
