@@ -3,13 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GameController : MonoBehaviour {
+public class Game_Controller : MonoBehaviour {
 
 	//Text output for red's score
 	public Text redScore;
 	//Text output for blue's score
 	public Text blueScore;
+	//The Red counter
 	public int redCounter;
+	//The blue countr
 	public int blueCounter;
 
 	void Start(){
@@ -17,33 +19,15 @@ public class GameController : MonoBehaviour {
 	}
 
 
-
-//	// Update is called once per frame
-//	void Update () {
-//
-//		foreach (GameObject go in GameObject.FindGameObjectsWithTag ("Planet")) {
-//			Debug.Log ("Planets: " + go.name);
-//			if (go.GetComponent<Paint_Planet> ().isRed == true) {
-//
-//				redCounter++;
-//				redScore.text = redCounter.ToString();
-//			
-//			}
-//			if (go.GetComponent<Paint_Planet> ().isBlue == true) {
-//
-//
-//				blueCounter++;
-//				blueScore.text = blueCounter.ToString();
-//
-//			}
-//
-//
-//			}
-//
-//				
-//	}
-
-	//The player to add score to
+	//----------------------------------------------------------------------
+	//		OnTriggerEnter()
+	// Triggers the Painting script and deletes the projectile
+	// 
+	// Param:			
+	// 		Collider col - The collider of any objects that pass into this trigger	
+	// Return;
+	// 			Void
+	//----------------------------------------------------------------------
 	public void AddScore(int scoreToAdd, Color _color ){
 		if(_color == Color.red){
 			redCounter += scoreToAdd;

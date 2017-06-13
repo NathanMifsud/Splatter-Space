@@ -5,6 +5,10 @@ using XboxCtrlrInput;
 
 public class Character_Controller : MonoBehaviour {
 
+
+	//respawn point for if the ships collide
+	public Transform respawnShipCollide;
+
 	//Game Object for the bullet
 	public GameObject bullet;
 	//Left Bullet Spawnpoint
@@ -15,15 +19,6 @@ public class Character_Controller : MonoBehaviour {
 	public float timeBetweenShots = .4f;
 	//Boolean used to reactivate the timer for shots
 	public bool canShoot = true;
-
-	//Game Object for the Bomb
-	public GameObject bomb;
-	//Bomd Spawnpoint
-	public GameObject bombSpawn;
-	//Cooldown for bombs fired;
-	public float timeBetweenBombs;
-	//Boolean used to reactivate the timer before bombs
-	public bool canBomb = true;
 
 	//Game Object for the Rear Camera
 	public GameObject rearCamera;
@@ -132,7 +127,7 @@ public class Character_Controller : MonoBehaviour {
 	}
 	//----------------------------------------------------------------------
 	//		PlayerShoot()
-	// Lets the player shoot normal bullet and bomb projectiles
+	// Lets the player shoot normal bullet 
 	// 
 	// Param:			
 	// 			None
@@ -147,25 +142,14 @@ public class Character_Controller : MonoBehaviour {
 		if (XCI.GetAxis (XboxAxis.RightTrigger, controller) != 0) {
 			
 				if (canShoot == true) {
-					GameObject Go = Instantiate (bullet, bulletSpawnPoint1.transform.position, transform.rotation) as GameObject;
-					Go.GetComponent<Rigidbody> ().AddForce (transform.forward * 100, ForceMode.Impulse);
-					GameObject Go2 = Instantiate (bullet, bulletSpawnPoint2.transform.position, transform.rotation) as GameObject;
+				GameObject Go = Instantiate (bullet, bulletSpawnPoint1.transform.position, ship.transform.rotation) as GameObject;
+				Go.GetComponent<Rigidbody> ().AddForce (transform.forward * 100, ForceMode.Impulse);
+				GameObject Go2 = Instantiate (bullet, bulletSpawnPoint2.transform.position,ship.transform.rotation) as GameObject;
 					Go2.GetComponent<Rigidbody> ().AddForce (transform.forward * 100, ForceMode.Impulse);
 					canShoot = false;
 					Invoke ("ResetShootBool", timeBetweenShots);
 				}
 			}
-
-
-		if (XCI.GetButtonDown (XboxButton.RightBumper, controller)) {
-
-			if (canBomb == true) {
-				GameObject Go3 = Instantiate (bomb, bombSpawn.transform.position, transform.rotation) as GameObject;
-				Go3.GetComponent<Rigidbody> ().AddForce (transform.forward * 50, ForceMode.Impulse);
-				canBomb = false;
-				Invoke ("ResetBombBool", timeBetweenBombs);
-			}
-		}
 
 	}
 
@@ -210,13 +194,14 @@ public class Character_Controller : MonoBehaviour {
 	void OnTriggerEnter (Collider col) {
 
 
-		if (col.gameObject.tag == "Player") {
+		if (col.gameObject.tag == "Player" || col.gameObject.tag == "Planet" || col.gameObject.tag == "DeadZone"){
 
 
-			Destroy (this.ship);
+			transform.position = respawnShipCollide.position;
 		}
 
 	}
+		
 
 
 }

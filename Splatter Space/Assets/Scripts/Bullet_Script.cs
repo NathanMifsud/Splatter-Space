@@ -14,7 +14,8 @@ public class Bullet_Script : MonoBehaviour {
 
 		Destroy (this.gameObject, bulletDespawnTime);
 	}
-	
+
+
 	//----------------------------------------------------------------------
 	//		OnTriggerEnter()
 	// Triggers the Painting script and deletes the projectile

@@ -21,7 +21,7 @@ public class Paint_Planet : MonoBehaviour {
 
 
 
-	private GameController controller;
+	private Game_Controller controller;
 
 
 	//----------------------------------------------------------------------
@@ -35,7 +35,7 @@ public class Paint_Planet : MonoBehaviour {
 	//----------------------------------------------------------------------
 	void Start () {
 		//Cache game controller
-		controller = FindObjectOfType<GameController>();
+		controller = FindObjectOfType<Game_Controller>();
 	
 		rend = GetComponent<Renderer> ();
 		rend.enabled = true;
@@ -59,7 +59,6 @@ public class Paint_Planet : MonoBehaviour {
 		if (rend.material.color == currentColor) {
 			rend.material.color = playerColor;
 			if (playerColor == Color.red) {
-				Debug.Log ("HERE RED");
 				isRed = true;
 				isBlue = false;
 				controller.AddScore (1, Color.red);
@@ -72,8 +71,6 @@ public class Paint_Planet : MonoBehaviour {
 				controller.AddScore (1, Color.blue);
 
 			}
-		}else{//If the planet is not the same colour as the current colour
-			Debug.Log("WE HERE MAYBE?");
 		}
 		
 		if (rend.material.color == Color.blue) {
