@@ -5,12 +5,22 @@ using UnityEngine.UI;
 
 public class Game_Countdown : MonoBehaviour {
 
+	//Amount of time per match
 	public float gameTimer = 90f;
+	//Text output for game time
 	public Text gameCountDown;
 
 
 	
-	// Update is called once per frame
+	//----------------------------------------------------------------------
+	//		Update()
+	// Runs every frame
+	// 
+	// Param:			
+	// 			None
+	// Return;
+	// 			Void
+	//----------------------------------------------------------------------
 	void Update () {
 
 		gameCountDown.text = gameTimer.ToString ();

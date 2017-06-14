@@ -9,7 +9,15 @@ public class Bullet_Script : MonoBehaviour {
 	//Color of the bullets, used to change the color of the planets
 	public Color playerColor;
 
-	// Use this for initialization
+	//----------------------------------------------------------------------
+	//		Start()
+	// Runs on play
+	// 
+	// Param:			
+	// 			None
+	// Return;
+	// 			Void
+	//----------------------------------------------------------------------
 	void Start(){
 
 		Destroy (this.gameObject, bulletDespawnTime);

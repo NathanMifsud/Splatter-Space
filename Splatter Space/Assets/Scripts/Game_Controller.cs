@@ -14,13 +14,22 @@ public class Game_Controller : MonoBehaviour {
 	//The blue countr
 	public int blueCounter;
 
+	//----------------------------------------------------------------------
+	//		Start()
+	// Runs on play
+	// 
+	// Param:			
+	// 			None
+	// Return;
+	// 			Void
+	//----------------------------------------------------------------------
 	void Start(){
 		UpdateScore ();
 	}
 
 
 	//----------------------------------------------------------------------
-	//		OnTriggerEnter()
+	//		AddScore()
 	// Triggers the Painting script and deletes the projectile
 	// 
 	// Param:			
@@ -36,7 +45,11 @@ public class Game_Controller : MonoBehaviour {
 		}
 		UpdateScore ();
 	}
-	//_color = the player to remove score from
+
+
+
+
+
 	public void RemoveScore(int scoreToAdd, Color _color ){
 		if(_color == Color.red){
 			redCounter -= scoreToAdd;

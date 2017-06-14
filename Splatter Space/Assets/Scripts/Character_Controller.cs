@@ -167,19 +167,6 @@ public class Character_Controller : MonoBehaviour {
 		}
 
 
-	//----------------------------------------------------------------------
-	//		ResetBombBool()
-	// Resets the boolean for the Bomb Timer
-	// 
-	// Param:			
-	// 			None
-	// Return;
-	// 			Void
-	//----------------------------------------------------------------------
-	private void ResetBombBool(){
-		canBomb = true;
-	}
-
 
 
 	//----------------------------------------------------------------------
